@@ -1,7 +1,7 @@
 // src/routes/login/+page.server.ts
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
-import { db, toPublicUser } from '$lib/server/db';
+import { db } from '$lib/server/db';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	// Already logged in — send to dashboard or the intended destination

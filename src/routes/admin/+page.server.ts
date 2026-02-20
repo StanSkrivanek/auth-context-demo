@@ -1,7 +1,6 @@
 // src/routes/admin/+page.server.ts
 import { error, redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { db } from '$lib/server/db';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	// Layer 1: Must be authenticated
