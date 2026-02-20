@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/yourusername/auth-context-demo.git"
+		"url": "https://github.com/stanskrivanek/auth-context-demo.git"
 	},
 	"keywords": [
 		"sveltekit",
@@ -23,9 +23,9 @@
 	],
 	"author": "",
 	"bugs": {
-		"url": "https://github.com/yourusername/auth-context-demo/issues"
+		"url": "https://github.com/stanskrivanek/auth-context-demo/issues"
 	},
-	"homepage": "https://github.com/yourusername/auth-context-demo#readme",
+	"homepage": "https://github.com/stanskrivanek/auth-context-demo#readme",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
