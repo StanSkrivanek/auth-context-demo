@@ -167,7 +167,7 @@ Children only render if the user has the required permission.
 - No password reset — implement email-based password recovery
 - No email verification flow — validate email addresses before granting full access
 
-For production-ready authentication, consider [Lucia](https://lucia-auth.com/), [Auth.js](https://authjs.dev/), or [WorkOS](https://workos.com/).
+For production-ready authentication, consider [Better Auth](https://www.better-auth.com), [Lucia](https://lucia-auth.com/),or any other robust authentication solution.
 
 ## Testing
 
