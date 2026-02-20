@@ -1,8 +1,31 @@
 {
 	"name": "auth-context-demo",
-	"private": true,
 	"version": "0.0.1",
+	"description": "A SvelteKit authentication demo showcasing server-side session management, role-based permissions, and reactive auth state distribution using Svelte 5's context API",
+	"private": false,
 	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/yourusername/auth-context-demo.git"
+	},
+	"keywords": [
+		"sveltekit",
+		"svelte5",
+		"authentication",
+		"auth",
+		"session-management",
+		"permissions",
+		"rbac",
+		"context-api",
+		"demo",
+		"example"
+	],
+	"author": "",
+	"bugs": {
+		"url": "https://github.com/yourusername/auth-context-demo/issues"
+	},
+	"homepage": "https://github.com/yourusername/auth-context-demo#readme",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
