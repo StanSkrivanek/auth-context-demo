@@ -1,6 +1,7 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
 	import { getAuthContext } from '$lib/auth/auth-context.svelte';
+	import { Cookie, Lock, Radio, UserCog } from 'lucide-svelte';
 
 	const auth = getAuthContext();
 </script>
@@ -39,22 +40,30 @@
 
 	<div class="feature-grid">
 		<div class="feature">
-			<span class="feature-icon">🔒</span>
+			<div class="feature-icon">
+				<Lock size={24} strokeWidth={1.5} />
+			</div>
 			<h3>Server-side route guards</h3>
 			<p>Hook validates the session cookie before a single byte of HTML is sent.</p>
 		</div>
 		<div class="feature">
-			<span class="feature-icon">🎭</span>
+			<div class="feature-icon">
+				<UserCog size={24} strokeWidth={1.5} />
+			</div>
 			<h3>Role-based permissions</h3>
 			<p>Roles are resolved server-side from a role table, never computed client-side.</p>
 		</div>
 		<div class="feature">
-			<span class="feature-icon">📡</span>
+			<div class="feature-icon">
+				<Radio size={24} strokeWidth={1.5} />
+			</div>
 			<h3>Context distribution</h3>
 			<p>Auth state flows to every component via context — zero prop drilling.</p>
 		</div>
 		<div class="feature">
-			<span class="feature-icon">🍪</span>
+			<div class="feature-icon">
+				<Cookie size={24} strokeWidth={1.5} />
+			</div>
 			<h3>httpOnly cookies</h3>
 			<p>Session token is invisible to JavaScript. XSS attacks cannot steal it.</p>
 		</div>
@@ -90,27 +99,35 @@
 	}
 
 	.btn-primary {
-		background: #6366f1;
+		background: orangered;
 		color: white;
 		text-decoration: none;
 		padding: 0.65rem 1.25rem;
 		border-radius: 0.5rem;
 		font-weight: 600;
 		font-size: 0.95rem;
+		transition: all 0.15s;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 	.btn-primary:hover {
-		background: #4f46e5;
+		background: black;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	}
 
 	.btn-secondary {
 		background: white;
-		color: #6366f1;
+		color: orangered;
 		text-decoration: none;
 		padding: 0.65rem 1.25rem;
 		border-radius: 0.5rem;
 		font-weight: 600;
 		font-size: 0.95rem;
-		border: 1px solid #6366f1;
+		border: 1px solid #e2e8f0;
+		transition: all 0.15s;
+	}
+	.btn-secondary:hover {
+		background: #f8fafc;
+		border-color: orangered;
 	}
 
 	.hint {
@@ -135,10 +152,17 @@
 		border: 1px solid #e2e8f0;
 		border-radius: 0.75rem;
 		padding: 1.25rem;
+		transition: all 0.2s;
+	}
+
+	.feature:hover {
+		border-color: #cbd5e1;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 	}
 
 	.feature-icon {
-		font-size: 1.5rem;
+		color: orangered;
+		display: inline-flex;
 	}
 	.feature h3 {
 		font-size: 0.95rem;

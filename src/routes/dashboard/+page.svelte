@@ -2,6 +2,7 @@
 <script lang="ts">
 	import { getAuthContext } from '$lib/auth/auth-context.svelte';
 	import RequirePermission from '$lib/components/RequirePermission.svelte';
+	import { Edit, Eye, FileText, MessageSquare, Settings, Trash2 } from 'lucide-svelte';
 
 	interface Props {
 		data: {
@@ -35,17 +36,23 @@
 	<!-- Stats -->
 	<div class="stats-grid">
 		<div class="stat-card">
-			<div class="stat-icon">📝</div>
+			<div class="stat-icon">
+				<FileText size={20} strokeWidth={1.5} />
+			</div>
 			<div class="stat-value">{data.stats.posts}</div>
 			<div class="stat-label">Posts</div>
 		</div>
 		<div class="stat-card">
-			<div class="stat-icon">💬</div>
+			<div class="stat-icon">
+				<MessageSquare size={20} strokeWidth={1.5} />
+			</div>
 			<div class="stat-value">{data.stats.comments}</div>
 			<div class="stat-label">Comments</div>
 		</div>
 		<div class="stat-card">
-			<div class="stat-icon">👁️</div>
+			<div class="stat-icon">
+				<Eye size={20} strokeWidth={1.5} />
+			</div>
 			<div class="stat-value">{data.stats.views.toLocaleString()}</div>
 			<div class="stat-label">Views</div>
 		</div>
@@ -53,7 +60,9 @@
 		<!-- This card only shows for users with delete:posts -->
 		<RequirePermission permission="delete:posts">
 			<div class="stat-card stat-card--accent">
-				<div class="stat-icon">🗑️</div>
+				<div class="stat-icon">
+					<Trash2 size={20} strokeWidth={1.5} />
+				</div>
 				<div class="stat-value">3</div>
 				<div class="stat-label">Pending deletions</div>
 			</div>
@@ -80,8 +89,14 @@
 				<section class="section">
 					<h2>Quick Actions</h2>
 					<div class="action-buttons">
-						<button class="action-btn">✏️ New Post</button>
-						<button class="action-btn">💬 Add Comment</button>
+						<button class="action-btn">
+							<Edit size={16} />
+							New Post
+						</button>
+						<button class="action-btn">
+							<MessageSquare size={16} />
+							Add Comment
+						</button>
 					</div>
 				</section>
 			</RequirePermission>
@@ -95,7 +110,10 @@
 
 			<RequirePermission permission="admin:system" fallback={adminHint}>
 				<section class="section section--admin">
-					<h2>⚙️ Admin Shortcut</h2>
+					<h2>
+						<Settings size={18} />
+						Admin Shortcut
+					</h2>
 					<p>You have <code>admin:system</code> — full control available.</p>
 					<a href="/admin" class="action-btn action-btn--admin">Go to Admin Panel →</a>
 				</section>
@@ -145,7 +163,7 @@
 	}
 	.permissions-count {
 		background: #ede9fe;
-		color: #6366f1;
+		color: orangered;
 		padding: 0.3rem 0.75rem;
 		border-radius: 1rem;
 		font-size: 0.8rem;
@@ -165,15 +183,22 @@
 		border-radius: 0.75rem;
 		padding: 1.25rem;
 		text-align: center;
+		transition: all 0.2s;
+	}
+	.stat-card:hover {
+		border-color: #cbd5e1;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 	}
 	.stat-card--accent {
-		border-color: #c4b5fd;
-		background: #faf5ff;
+		border-color: orangered;
+		background: #fff5f5;
 	}
 
 	.stat-icon {
-		font-size: 1.5rem;
+		color: orangered;
 		margin-bottom: 0.5rem;
+		display: inline-flex;
+		justify-content: center;
 	}
 	.stat-value {
 		font-size: 1.75rem;
@@ -209,13 +234,16 @@
 		font-size: 1rem;
 		font-weight: 600;
 		margin: 0 0 1rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 	.section--muted {
 		background: #f8fafc;
 	}
 	.section--admin {
-		border-color: #c4b5fd;
-		background: #faf5ff;
+		border-color: orangered;
+		background: #fff5f5;
 	}
 
 	.side-sections {
@@ -263,15 +291,19 @@
 		text-align: left;
 		text-decoration: none;
 		color: #1e293b;
-		display: block;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: all 0.15s;
 	}
 	.action-btn:hover {
 		background: #e2e8f0;
+		border-color: #cbd5e1;
 	}
 	.action-btn--admin {
-		background: #ede9fe;
-		border-color: #c4b5fd;
-		color: #6d28d9;
+		background: #fff5f5;
+		border-color: orangered;
+		color: orangered;
 	}
 
 	.permissions-section {

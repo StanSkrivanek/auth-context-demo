@@ -70,6 +70,7 @@ export function createAuthContext(
 	async function logout(): Promise<void> {
 		await fetch('/api/auth/logout', { method: 'POST' });
 		await invalidate('auth:session');
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto('/');
 	}
 

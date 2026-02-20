@@ -1,7 +1,8 @@
 <!-- src/lib/components/Navigation.svelte -->
 <script lang="ts">
-	import { getAuthContext } from '$lib/auth/auth-context.svelte';
 	import { page } from '$app/stores';
+	import { getAuthContext } from '$lib/auth/auth-context.svelte';
+	import { Lock, Settings } from 'lucide-svelte';
 
 	const auth = getAuthContext();
 
@@ -13,7 +14,10 @@
 
 <nav class="nav">
 	<div class="nav-inner">
-		<a href="/" class="nav-brand">🔐 Auth Demo</a>
+		<a href="/" class="nav-brand">
+			<Lock size={18} />
+			<span>Auth Demo</span>
+		</a>
 
 		<div class="nav-links">
 			{#each navLinks as link}
@@ -30,7 +34,8 @@
 					class="nav-link admin-link"
 					class:active={$page.url.pathname.startsWith('/admin')}
 				>
-					⚙️ Admin
+					<Settings size={14} />
+					Admin
 				</a>
 			{/if}
 		</div>
@@ -81,6 +86,9 @@
 		text-decoration: none;
 		color: #1e293b;
 		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
 	.nav-links {
@@ -98,6 +106,9 @@
 		transition:
 			background 0.15s,
 			color 0.15s;
+		display: flex;
+		align-items: center;
+		gap: 0.375rem;
 	}
 	.nav-link:hover {
 		background: #f1f5f9;
@@ -105,12 +116,12 @@
 	}
 	.nav-link.active {
 		background: #ede9fe;
-		color: #6366f1;
+		color: orangered;
 		font-weight: 500;
 	}
 
 	.admin-link {
-		color: #7c3aed !important;
+		color: orangered !important;
 	}
 	.admin-link.active {
 		background: #f3e8ff !important;
@@ -134,7 +145,7 @@
 		width: 2rem;
 		height: 2rem;
 		border-radius: 50%;
-		background: #6366f1;
+		background: orangered;
 		color: white;
 		display: flex;
 		align-items: center;
@@ -160,29 +171,34 @@
 	}
 
 	.logout-btn {
-		background: none;
+		background: white;
 		border: 1px solid #e2e8f0;
 		border-radius: 0.375rem;
 		padding: 0.3rem 0.7rem;
 		font-size: 0.8rem;
 		color: #475569;
 		cursor: pointer;
+		transition: all 0.15s;
 	}
 	.logout-btn:hover {
 		background: #f8fafc;
 		border-color: #cbd5e1;
+		color: #1e293b;
 	}
 
 	.login-btn {
-		background: #6366f1;
+		background: orangered;
 		color: white;
 		text-decoration: none;
 		padding: 0.4rem 0.9rem;
 		border-radius: 0.375rem;
-		font-size: 0.875rem;
-		font-weight: 500;
+		font-size: 0.85rem;
+		font-weight: 600;
+		transition: all 0.15s;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 	.login-btn:hover {
-		background: #4f46e5;
+		background: black;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	}
 </style>

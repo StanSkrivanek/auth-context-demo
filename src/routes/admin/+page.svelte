@@ -1,6 +1,7 @@
 <!-- src/routes/admin/+page.svelte -->
 <script lang="ts">
 	import { getAuthContext } from '$lib/auth/auth-context.svelte';
+	import { Settings, Shield } from 'lucide-svelte';
 
 	interface UserRow {
 		id: string;
@@ -29,7 +30,10 @@
 <div class="admin">
 	<header class="page-header">
 		<div>
-			<h1>⚙️ Admin Panel</h1>
+			<h1>
+				<Settings size={28} strokeWidth={2} />
+				Admin Panel
+			</h1>
 			<p>Restricted to users with <code>admin:system</code> permission.</p>
 		</div>
 		<div class="admin-badge">Admin</div>
@@ -37,7 +41,10 @@
 
 	<!-- Security model explanation -->
 	<div class="security-callout">
-		<h3>🛡️ How this page is protected</h3>
+		<h3>
+			<Shield size={20} />
+			How this page is protected
+		</h3>
 		<ol>
 			<li>
 				<strong>hooks.server.ts</strong> validated the session cookie and checked
@@ -132,6 +139,9 @@
 		font-size: 1.75rem;
 		font-weight: 700;
 		margin: 0 0 0.25rem;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 	.page-header p {
 		color: #475569;
@@ -145,7 +155,7 @@
 	}
 
 	.admin-badge {
-		background: #7c3aed;
+		background: black;
 		color: white;
 		padding: 0.3rem 0.9rem;
 		border-radius: 1rem;
@@ -156,7 +166,7 @@
 
 	.security-callout {
 		background: #f0fdf4;
-		border: 1px solid #bbf7d0;
+		border: 1px solid #bbf7df;
 		border-radius: 0.75rem;
 		padding: 1.25rem;
 		margin-bottom: 1.5rem;
@@ -165,7 +175,10 @@
 		font-size: 0.95rem;
 		font-weight: 600;
 		margin: 0 0 0.75rem;
-		color: #166534;
+		color: #12462f;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 	.security-callout ol {
 		padding-left: 1.25rem;
@@ -177,7 +190,7 @@
 		margin-bottom: 0.4rem;
 	}
 	.security-callout code {
-		background: #dcfce7;
+		background: #c7ffd3;
 		padding: 0.1rem 0.35rem;
 		border-radius: 0.25rem;
 		font-size: 0.8rem;
@@ -263,17 +276,17 @@
 		font-weight: 500;
 	}
 	.role-badge.admin {
-		background: #ede9fe;
-		color: #6d28d9;
+		background: #fff5f5;
+		color: orangered;
 	}
 
 	.action-btn-sm {
 		padding: 0.25rem 0.6rem;
-		background: #fef2f2;
-		border: 1px solid #fecaca;
+		background: #fff5f5;
+		border: 1px solid orangered;
 		border-radius: 0.375rem;
 		font-size: 0.75rem;
-		color: #ef4444;
+		color: orangered;
 		cursor: pointer;
 	}
 	.action-btn-sm:disabled {

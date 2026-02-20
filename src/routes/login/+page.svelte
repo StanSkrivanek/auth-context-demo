@@ -1,6 +1,7 @@
 <!-- src/routes/login/+page.svelte -->
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { KeyRound } from 'lucide-svelte';
 
 	interface Props {
 		data: { returnUrl: string | null };
@@ -18,7 +19,9 @@
 <div class="login-page">
 	<div class="login-card">
 		<div class="login-header">
-			<div class="login-icon">🔐</div>
+			<div class="login-icon">
+				<KeyRound size={32} strokeWidth={1.5} />
+			</div>
 			<h1>Sign in</h1>
 			<p>Enter your credentials to continue</p>
 		</div>
@@ -107,7 +110,9 @@
 		padding: 2rem;
 		width: 100%;
 		max-width: 400px;
-		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+		box-shadow:
+			0 1px 3px rgba(0, 0, 0, 0.06),
+			0 1px 2px rgba(0, 0, 0, 0.04);
 	}
 
 	.login-header {
@@ -115,8 +120,10 @@
 		margin-bottom: 1.75rem;
 	}
 	.login-icon {
-		font-size: 2.5rem;
-		margin-bottom: 0.5rem;
+		color: orangered;
+		margin-bottom: 0.75rem;
+		display: flex;
+		justify-content: center;
 	}
 	.login-header h1 {
 		font-size: 1.5rem;
@@ -163,12 +170,13 @@
 		border-radius: 0.375rem;
 		font-size: 0.9rem;
 		width: 100%;
+		transition: all 0.15s;
 	}
 
 	input:focus {
-		outline: 2px solid #6366f1;
-		outline-offset: 1px;
-		border-color: #6366f1;
+		outline: none;
+		border-color: orangered;
+		box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.1);
 	}
 	input:disabled {
 		opacity: 0.6;
@@ -176,7 +184,7 @@
 
 	.submit-btn {
 		padding: 0.7rem;
-		background: #6366f1;
+		background: orangered;
 		color: white;
 		border: none;
 		border-radius: 0.5rem;
@@ -188,9 +196,12 @@
 		justify-content: center;
 		gap: 0.5rem;
 		margin-top: 0.25rem;
+		transition: all 0.15s;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 	}
 	.submit-btn:hover:not(:disabled) {
-		background: #4f46e5;
+		background: orangered;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	}
 	.submit-btn:disabled {
 		opacity: 0.65;
