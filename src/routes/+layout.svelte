@@ -1,8 +1,8 @@
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
 	import { createAuthContext } from '$lib/auth/auth-context.svelte';
-	import Navigation from '$lib/components/Navigation.svelte';
 	import type { Permission, User } from '$lib/auth/types';
+	import Navigation from '$lib/components/Navigation.svelte';
 
 	interface Props {
 		data: { user: User | null; permissions: readonly Permission[] };
@@ -12,7 +12,7 @@
 	let { data, children }: Props = $props();
 
 	// One call here — auth is available to every component in the tree
-	createAuthContext(data.user, data.permissions);
+	createAuthContext(() => data);
 </script>
 
 <div class="app">

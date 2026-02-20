@@ -1,6 +1,7 @@
 // src/lib/auth/auth-context.svelte.ts
-import { getContext, hasContext, setContext } from 'svelte';
 import { goto, invalidate } from '$app/navigation';
+import { getContext, hasContext, setContext } from 'svelte';
+import { SvelteSet } from 'svelte/reactivity';
 import type { AuthContext, AuthState, Permission, User } from './types';
 
 const AUTH_KEY = Symbol('auth');
@@ -9,21 +10,23 @@ const AUTH_KEY = Symbol('auth');
  * Creates the auth context from server-validated data.
  * Call ONCE in the root +layout.svelte.
  *
- * @param serverUser        - User from layout.server.ts load (already validated)
- * @param serverPermissions - Permissions resolved server-side from roles
+ * @param getData - Function that returns current user and permissions from reactive data prop
  */
 export function createAuthContext(
-	serverUser: User | null,
-	serverPermissions: readonly Permission[]
+	getData: () => { user: User | null; permissions: readonly Permission[] }
 ): AuthContext {
 	/**
 	 * Use $derived.by, NOT $state.
 	 *
-	 * $state would capture a snapshot of serverUser at creation time.
+	 * $state would capture a snapshot at creation time.
 	 * After invalidate('auth:session') re-runs the layout load and
 	 * provides new props, $derived automatically re-evaluates.
 	 * $state would silently drift from the server truth.
 	 */
+	const data = $derived(getData());
+	const serverUser = $derived(data.user);
+	const serverPermissions = $derived(data.permissions);
+
 	const state = $derived.by<AuthState>(() => {
 		if (serverUser) {
 			return { status: 'authenticated', user: serverUser, permissions: serverPermissions };
@@ -34,7 +37,7 @@ export function createAuthContext(
 	const isAuthenticated = $derived(serverUser !== null);
 
 	// O(1) Set-based lookup for hasPermission calls in render loops
-	const permSet = $derived(new Set(serverPermissions));
+	const permSet = $derived(new SvelteSet(serverPermissions));
 
 	function hasPermission(p: Permission): boolean {
 		return permSet.has(p);
@@ -60,6 +63,7 @@ export function createAuthContext(
 		}
 		// Re-run only the layout load (not every page's load function)
 		await invalidate('auth:session');
+		// eslint-disable-next-line svelte/no-navigation-without-resolve
 		await goto('/dashboard');
 	}
 
